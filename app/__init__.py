@@ -28,6 +28,7 @@ def init_db():
         with app.open_resource(dump_file, mode='r') as f:
             db.cursor().executescript(f.read())
         db.commit()
+        
 
 ########################
 # Configure Secret Key #
