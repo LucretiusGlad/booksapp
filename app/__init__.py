@@ -2,12 +2,33 @@ import os
 import sys
 
 from flask import Flask, render_template
+from flask.ext.babel import Babel
 from flask.ext.sqlalchemy import SQLAlchemy
+from flask.ext.mail import Mail
+from flask.ext.security import Security, SQLAlchemyUserDatastore
 
 app = Flask(__name__)
 app.config.from_object('config')
 
+babel = Babel(app)
 db = SQLAlchemy(app)
+
+mail = Mail(app)
+
+def import_user_role():
+    from users.models import User, Role
+    return User, Role
+
+user_datastore = SQLAlchemyUserDatastore(db, *import_user_role())
+security = Security(app, user_datastore)
+
+def init_db():
+    with app.app_context():
+        dump_file_dir = os.path.dirname(os.path.abspath(__name__))
+        dump_file = os.path.join(dump_file_dir, 'app.sql')
+        with app.open_resource(dump_file, mode='r') as f:
+            db.cursor().executescript(f.read())
+        db.commit()
 
 ########################
 # Configure Secret Key #
@@ -39,11 +60,8 @@ if not app.config['DEBUG']:
 def not_found(error):
     return render_template('404.html'), 404
 
-from app.users.views import mod as usersModule
-app.register_blueprint(usersModule)
+from app.books.views import mod as books_module
+app.register_blueprint(books_module)
 
-# Later on you'll import the other blueprints the same way:
-#from app.comments.views import mod as commentsModule
-#from app.posts.views import mod as postsModule
-#app.register_blueprint(commentsModule)
-#app.register_blueprint(postsModule)
+from app.authors.views import mod as authors_module
+app.register_blueprint(authors_module)

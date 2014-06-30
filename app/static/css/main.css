@@ -1,0 +1,244 @@
+* {
+	outline: none;
+}
+
+html {
+    min-height: 100%;
+    position: relative;
+}
+
+body {
+    background-color: #e4e6e9;
+    color: #393939;
+    font-family: 'Open Sans';
+    font-size: 13px;
+    min-height: 100%;
+    padding-bottom: 0;
+    margin: auto;
+    max-width: 950px;
+    min-width: 500px;
+}
+
+body:before {
+    background-color: #fff;
+    bottom: 0;
+    content: "";
+    display: block;
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: -1;
+}
+
+.navbar {
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 0;
+    padding-right: 0;
+    margin-bottom: 0;
+}
+
+.navbar .brand {
+    color: #fff;
+    font-size: 24px;
+    text-shadow: none;
+}
+
+.navbar .navbar-inner {
+    background: none repeat scroll 0 0 #438eb9;
+    border: 0 none;
+    border-radius: 0;
+    box-shadow: none;
+    margin: 0;
+    min-height: 45px;
+    padding-left: 0;
+    padding-right: 0;
+    position: relative;
+}
+
+[class*=" icon-"], [class^="icon-"] {
+    display: inline-block;
+    text-align: center;
+}
+
+.ace-nav > li {
+	max-height: 50px;	
+}
+
+.ace-nav > li.light-blue {
+	height: 50px;
+	line-height: 50px;
+}
+
+.ace-nav > li.nobg {
+	background-color: transparent;
+	border-left: none;
+}
+
+.ace-nav > li.nobg a {
+	color: #fff;
+}
+
+.ace-nav > li > a {
+    background-color: transparent;
+    color: #eee;
+    display: block;
+    height: 100%;
+    padding: 0 8px !important;
+    position: relative;
+}
+
+.navbar .nav > li > a, .navbar .nav > li > a:hover, .navbar .nav > li > a:focus {
+    color: #fff;
+    font-size: 13px;
+    text-shadow: none;
+}
+
+.user-info {
+	max-width: none;
+	line-height: 38px;
+}
+
+.nav > li.light-blue > a:hover, .nav > li.light-blue > a:focus {
+    background-color: transparent;
+}
+
+.navbar {
+	border: none;
+}
+
+.navbar-inner {
+	height: 50px;
+}
+
+.main-content {
+	margin-left: 0;
+}
+
+.navbar .brand {
+	line-height: 49px;
+}
+
+.list_table .id_col {
+	width: 60px;
+}
+
+.list_table .actions_col {
+	width: 105px;
+}
+
+select {
+	border: 1px solid #ccc;
+	background-color: #fff;
+}
+
+label {
+	font-weight: normal;
+}
+
+.dataTables_length {
+	float: right;
+	margin-left: 50px;
+	margin-top: 15px;
+	margin-right: 10px;
+}
+
+.dataTables_filter {
+	float: right;
+	margin-top: 15px;
+}
+
+input[type="text"] {
+	border: 1px solid #ccc;
+}
+
+.dataTables_filter input[type="text"] {
+	padding: 4px 6px;
+	height: 25px;
+	line-height: 25px;
+}
+
+.dataTables_paginate input {
+	height: 31px;
+}
+
+.dataTables_info {
+	float: left;
+	margin-top: 20px;
+}
+
+.dataTables_paginate {
+	margin-top: 15px;
+}
+
+.action_btn {
+    border: 0 none;
+    height: 25px;
+    line-height: 14px;
+    padding: 0;
+    text-align: center;
+    width: 26px;
+}
+
+.btn.action_btn i {
+    margin: auto;
+}
+
+.add_btn {
+	position: relative;
+	top: 5px;
+	left: 10px;
+}
+
+.add_btn i {
+	position: relative;
+	top: 3px;
+	left: -3px;
+}
+
+.item_form label {
+	float: left;
+	width: 100px;
+}
+
+.item_form input,
+.item_form select {
+	float: left;
+	width: 300px;
+}
+
+.item_form .form_row {
+	clear: both;
+	overflow: hidden;
+	margin-top: 20px;
+}
+
+.modal-footer {
+	clear: both;
+}
+
+.form_dialog .modal-dialog {
+	width: 435px;
+}
+
+.form-control {
+	border-radius: 0;
+}
+
+.required {
+	color: red;
+}
+
+ul.errors {
+	padding: 0;
+}
+
+ul.errors li {
+	list-style: none;
+	color: red;
+}
+
+.item_form ul.errors {
+	margin-left: 100px;
+}

@@ -1,0 +1,9 @@
+<h3>
+	{{ author.name }}
+</h3>
+<h5>
+	Книги: 
+	{% for b in author.books %}
+	{{ b.name }}{% if not loop.last %},{% endif %}
+	{% endfor %}
+</h5>

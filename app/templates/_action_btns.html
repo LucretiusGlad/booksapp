@@ -1,0 +1,12 @@
+<button title="{{ _('View') }}" class="btn btn-info action_btn view_item_btn" item_id="{{ item.id }}">
+    <i class="icon-eye-open"></i>
+</button>
+{% with can_edit = current_user.has_role('editor') %}
+<button {% if not can_edit %} disabled {% endif %} class="btn btn-yellow action_btn edit_item_btn" item_id="{{ item.id }}" {% if can_edit %}title="{{ _('Edit') }}"{% else %}title="{{ _('You are not authorized to edit this entry') }}"{% endif %} >
+     <i class="icon-edit"></i>
+</button>
+{% endwith %}
+<button title="{{ _('Remove') }}" class="btn btn-danger action_btn remove_item_btn" item_id="{{ item.id }}">
+    <i class="icon-remove"></i>
+</button>
+  

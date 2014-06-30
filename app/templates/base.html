@@ -10,6 +10,9 @@
     	{% block css %}
     	<link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
     	<link rel="stylesheet" href="/static/bootstrap/css/bootstrap-theme.min.css">
+    	<link rel="stylesheet" href="/static/css/font-awesome.min.css" />
+    	<link rel="stylesheet" href="/static/css/ace.min.css" />
+    	<link rel="stylesheet" href="/static/css/table_paging.css" />
     	<link rel="stylesheet" href="/static/css/main.css" />
     	{% endblock %}
     	
@@ -20,7 +23,52 @@
   	</head>
   	
   	<body>
-    	<div id="header">{% block header %}{% endblock %}</div>
+    	<div id="header">
+			<div class="navbar">
+	            <div class="navbar-inner">
+	                <div class="container-fluid">
+	                    <a class="brand" href="{{ url_for('home') }}">
+	                        <small>
+	                            <i class="icon-home"></i>
+	                            {{ _('Library') }}
+	                        </small>
+	                    </a><!--/.brand-->
+	
+	                    <ul class="nav ace-nav pull-right">
+							{% if current_user.is_authenticated() %}
+	                        <li class="light-blue">
+	                            <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+	                                <span class="user-info">
+	                                  	Привет, {{ current_user.username }}
+	                                </span>
+	                                <i class="icon-caret-down"></i>
+	                            </a>
+	                            <ul class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-closer">
+	                                <li>
+	                                    <a href="{{ url_for('security.logout') }}">
+	                                        <i class="icon-off"></i>
+	                                        Выйти
+	                                    </a>
+	                                </li>
+	                            </ul>
+	                        </li>
+	                        {% else %}
+	                        <li class="nobg">
+	                            <span class="user-info">
+	                            	{% with next=request.path %}
+	                              	<a href="{{ url_for('security.login') }}">{{ _('Login') }}</a>
+	                              	&nbsp;&nbsp;&nbsp;
+	                              	<a href="{{ url_for('security.register') }}">{{ _('Register') }}</a>
+                                	{% endwith %}
+                                </span>
+	                        </li>
+	                        {% endif %}
+	                        
+	                    </ul><!--/.ace-nav-->
+	                </div><!--/.container-fluid-->
+	            </div><!--/.navbar-inner-->
+	        </div>    		
+    	</div>
     	<div id="messages-wrap">
       		<div id="messages">
         	{% for category, msg in get_flashed_messages(with_categories=true) %}
@@ -28,12 +76,33 @@
         	{% endfor %}
       		</div>
     	</div>
-    	<div id="content">{% block content %}{% endblock %}</div>
+    	<div class="main-content">
+    		<div id="breadcrumbs" class="breadcrumbs"></div>
+    		<div class="page-content">
+    		    <div class="tabbable">
+				    <ul class="nav nav-tabs">
+				    	{% block tabs %}{% endblock %}
+				    </ul>
+				</div>
+				<div class="tab-content">
+            		{% block content %}{% endblock %}
+            		<div id="authors"></div>
+            	</div>
+    		</div>
+    	</div>
     	<div id="footer">{% block footer %}{% endblock %}</div>
 
-    	{% block script %}
-    	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    	{% block scripts %}
+    	<script src="/static/js/jquery-2.1.1.min.js"></script>
+    	<script src="/static/js/underscore-min.js"></script>
+    	<script src="/static/js/backbone-min.js"></script>
+    	<script src="/static/js/jquery.form.min.js"></script>
     	<script src="/static/bootstrap/js/bootstrap.min.js"></script>
+    	<script src="/static/js/jquery.dataTables.min.js"></script>
+    	<script src="/static/js/dataTables.textInputPagination.js"></script>
+    	<script src="/static/js/jquery.dataTables.bootstrap.js"></script>
+    	<script src="/static/js/bootbox.min.js"></script>
+    	<script src="/static/js/dataTables_base_option.js" type="text/javascript"></script>
     	<script src="/static/js/main.js" type="text/javascript"></script>
     	{% endblock %}
   	</body>

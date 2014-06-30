@@ -1,6 +1,5 @@
 #-*-coding: utf-8-*-
 from app import db
-from flaskext.babel import gettext as _
 
 class Book(db.Model):
     
@@ -17,5 +16,5 @@ class Book(db.Model):
         self.name = name
     
     def __repr__(self):
-        return '<Book {0}>'.format(self.name)    
+        return u'<Book {0}>'.format(self.id)
     

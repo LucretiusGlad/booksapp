@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}
+	{{ _('Book list') }}
+{% endblock %}
+
+{% block tabs %}
+	<li class="active">
+	   <a>{{ _('Book list') }}</a>
+	</li>
+	<li>
+	   <a href="{{ url_for('authors.author_list') }}">{{ _('Author list') }}</a>
+	</li>
+{% endblock %}
+
+{% block scripts %}
+	{{ super() }}
+	<script type="text/javascript">
+		var book_table_path = "{{ url_for('books.book_table') }}";
+		var book_form_path = "{{ url_for('books.get_add_form') }}";
+		var book_add_path = "{{ url_for('books.add_book') }}";
+		var book_info_path = "{{ url_for('books.book_info') }}";
+		var book_remove_path = "{{ url_for('books.remove_book') }}";
+		var book_edit_form_path = "{{ url_for('books.get_edit_form') }}";
+		var book_edit_path = "{{ url_for('books.edit_book') }}";
+	</script>
+	<script src="/static/js/books.js" type="text/javascript"></script>
+{% endblock %}
+
+{% block content %}
+	<div id="books">
+		<table class="list_table table table-striped table-bordered table-hover">
+		    <thead>
+		        <tr>
+		            <th class="id_col">ID</th>
+		            <th>{{ _('Title') }}</th>
+		            <th class="actions_col">{{ _('Actions') }}</th>
+		        </tr>
+		    </thead>
+		</table>
+	</div>
+{% endblock %}
