@@ -1,5 +1,6 @@
 import os
 import sys
+import sqlite3
 
 from flask import Flask, render_template
 from flask.ext.babel import Babel
@@ -22,13 +23,17 @@ user_datastore = SQLAlchemyUserDatastore(db, *import_user_role())
 security = Security(app, user_datastore)
 
 def init_db():
-    with app.app_context():
-        dump_file_dir = os.path.dirname(os.path.abspath(__name__))
-        dump_file = os.path.join(dump_file_dir, 'app.sql')
-        with app.open_resource(dump_file, mode='r') as f:
-            db.cursor().executescript(f.read())
-        db.commit()
-        
+    conn = sqlite3.connect(app.config['DATABASE'])
+    c = conn.cursor()
+
+    db_file = os.path.join(
+                os.path.dirname(os.path.abspath(__name__)),
+                'app.sql')
+    
+    with app.open_resource(db_file, mode='r') as f:
+        c.executescript(f.read())
+    conn.commit()
+    conn.close()        
 
 ########################
 # Configure Secret Key #
