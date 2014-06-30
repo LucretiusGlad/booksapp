@@ -9,7 +9,7 @@ from flask.ext.security import Security, SQLAlchemyUserDatastore
 
 app = Flask(__name__)
 app.config.from_object('config')
-
+flask load sql from file
 babel = Babel(app)
 db = SQLAlchemy(app)
 
